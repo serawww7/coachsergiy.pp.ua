@@ -1,123 +1,70 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Запис на розбір — Коуч Сергій</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <meta name="description" content="Запис на Zoom-розбір або коуч-програму з коучем Сергієм. Обери формат, залиш дані й отримай підтвердження в Direct.">
-    <style>
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(to bottom, #0a0a0a, #333);
-            color: #fff;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-        h1 {
-            font-size: 30px;
-            color: #f4d03f;
-            margin-bottom: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-        input, select, textarea {
-            padding: 12px;
-            border-radius: 6px;
-            border: none;
-            font-size: 16px;
-        }
-        button {
-            padding: 12px 25px;
-            font-size: 18px;
-            background: #f4d03f;
-            color: #111;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        button:hover {
-            background: #d4ac0d;
-            transform: scale(1.05);
-        }
-        .pay-link {
-            margin-top: 30px;
-        }
-        .pay-link a {
-            color: #f4d03f;
-            text-decoration: underline;
-            font-size: 18px;
-        }
-        .success-message {
-            display: none;
-            margin-top: 20px;
-            font-size: 18px;
-            color: #8aff8a;
-        }
-        footer {
-            font-size: 14px;
-            padding: 20px 0;
-            opacity: 0.6;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Запис на метапрофіль</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: linear-gradient(to bottom, #0a0a0a, #333);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    form {
+      background: #222;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background: #f4d03f;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #d4ac0d;
+    }
+    h1 {
+      text-align: center;
+      color: #f4d03f;
+      margin-bottom: 30px;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <h1>Запис на Zoom або програму</h1>
-    <form id="metaForm">
-        <input type="text" name="name" placeholder="Твоє ім’я" required>
-        <input type="text" name="instagram" placeholder="Instagram (нікнейм або посилання)" required>
-        <select name="choice" required>
-            <option value="">Оберіть послугу:</option>
-            <option value="Zoom-розбір — 800 грн">Zoom-розбір — 800 грн</option>
-            <option value="Коуч-програма — 2500 грн">Коуч-програма — 2500 грн</option>
-        </select>
-        <textarea name="comment" rows="3" placeholder="Короткий запит або коментар"></textarea>
-        <button type="submit">Надіслати</button>
-        <div class="success-message" id="successMessage">✅ Дані відправлено! Очікуй на повідомлення в Direct.</div>
-    </form>
-    <div class="pay-link">
-        <p>🔗 Посилання для оплати:</p>
-        <a href="https://www.privat24.ua/send/hjz7z" target="_blank">Оплатити через Privat24</a>
-    </div>
-</div>
-<footer>
-    Коуч Сергій – ясність починається з чесності з собою.
-</footer>
-<script>
-    const form = document.getElementById('metaForm');
-    const successMessage = document.getElementById('successMessage');
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const data = new FormData(form);
-        const payload = Object.fromEntries(data.entries());
-        await fetch('https://script.google.com/macros/s/AKfycbx6PLaToO_fPOlgvEQ3JeinDkW1ix1PIbtiOaBhQrY-H2yji925RE9KoyB5_9LuRFju/exec', {
-            method: 'POST',
-            body: JSON.stringify(payload),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        form.reset();
-        successMessage.style.display = 'block';
-    });
-</script>
+  <form action="https://formspree.io/f/mzzgworp" method="POST">
+    <h1>Запис на розбір</h1>
+
+    <input type="text" name="name" placeholder="Твоє ім’я" required>
+
+    <input type="text" name="instagram" placeholder="Instagram (нікнейм)" required>
+
+    <select name="choice" required>
+      <option value="">Оберіть варіант</option>
+      <option value="Zoom-розбір — 800 грн">Zoom-розбір — 800 грн</option>
+      <option value="Коуч-програма — 2500 грн">Коуч-програма — 2500 грн</option>
+    </select>
+
+    <textarea name="comment" placeholder="Коментар або короткий запит (не обов'язково)"></textarea>
+
+    <button type="submit">Надіслати</button>
+  </form>
 </body>
 </html>
