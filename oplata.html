@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>Запис на метапрофіль</title>
+  <title>Запис на розбір</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -46,15 +46,18 @@
       color: #f4d03f;
       margin-bottom: 30px;
     }
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-  <form action="https://formspree.io/f/mzzgworp" method="POST">
-      <input type="hidden" name="_redirect" value="https://coachsergiy.pp.ua/dyakuyu.html">
+  <form id="metaForm">
     <h1>Запис на розбір</h1>
 
     <input type="text" name="name" placeholder="Твоє ім’я" required>
-
     <input type="text" name="instagram" placeholder="Instagram (нікнейм)" required>
 
     <select name="choice" required>
@@ -66,6 +69,41 @@
     <textarea name="comment" placeholder="Коментар або короткий запит (не обов'язково)"></textarea>
 
     <button type="submit">Надіслати</button>
+
+    <div class="error" id="errorMsg"></div>
   </form>
+
+  <script>
+    const form = document.getElementById('metaForm');
+    const errorDiv = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorDiv.textContent = '';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('https://formspree.io/f/YOUR_ENDPOINT_HERE', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+
+        if (response.ok) {
+          window.location.href = 'https://coachsergiy.pp.ua/dyakuyu.html';
+        } else {
+          const res = await response.json();
+          errorDiv.textContent = res?.error || 'Сталася помилка. Спробуйте ще раз.';
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Проблема з підключенням. Спробуйте пізніше.';
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>
